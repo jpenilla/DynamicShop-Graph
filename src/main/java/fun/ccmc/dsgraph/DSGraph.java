@@ -18,7 +18,7 @@ public final class DSGraph extends JavaPlugin {
         new CleanOldDataTask().runTaskTimerAsynchronously(this, 20L * 10L, 20L * 60L * 5L);
         startRecording();
 
-        cfg.getFiles().forEach(file -> {
+        cfg.getGraphConfigs().forEach(file -> {
             new StockGraphTask(file).runTaskTimerAsynchronously(this, 0L, 20L * 10L);
         });
     }

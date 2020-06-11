@@ -99,4 +99,16 @@ public class StockEntry {
     public int hashCode() {
         return Objects.hash(Median, Stock, Price);
     }
+
+    public double get(GraphConfig.GraphType type) {
+        if (type.equals(GraphConfig.GraphType.PRICE)) {
+            return Price;
+        } else if (type.equals(GraphConfig.GraphType.MEDIAN)) {
+            return Median;
+        } else if (type.equals(GraphConfig.GraphType.STOCK)) {
+            return Stock;
+        } else {
+            return 0;
+        }
+    }
 }

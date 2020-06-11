@@ -11,43 +11,43 @@ import org.jfree.data.xy.XYDataset;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class StockGraphTask extends BukkitRunnable {
     private final StockConfig stockConfig;
-    private final int cutoffMinutes = 30;
-    private final LocalDateTime cutoff = LocalDateTime.now().minusMinutes(cutoffMinutes);
+    private final GraphConfig graphConfig;
+    private final LocalDateTime cutoff;
 
-    public StockGraphTask(StockConfig config) {
-        this.stockConfig = config;
+    public StockGraphTask(GraphConfig config) {
+        this.graphConfig = config;
+        this.stockConfig = config.getStockConfig();
+        this.cutoff = LocalDateTime.now().minusMinutes(config.getGraphLengthMinutes());
     }
 
     @Override
     public void run() {
         TimeSeries series = new TimeSeries(stockConfig.getName());
 
-        //Plot price history
+        //Plot value history
         ArrayList<StockEntry> l = stockConfig.getHistory();
         l.forEach(entry -> {
             if (entry.getLocalDateTime().isAfter(cutoff)) {
-                series.addOrUpdate(entry.getSecond(), entry.getPrice());
+                series.addOrUpdate(entry.getSecond(), entry.get(graphConfig.getType()));
             }
         });
 
-        //Plot the current price
+        //Plot the current value
         StockEntry now = new StockEntry(stockConfig.getShopName(), new ItemStack(stockConfig.getMaterial()));
-        series.addOrUpdate(now.getSecond(), now.getPrice());
+        series.addOrUpdate(now.getSecond(), now.get(graphConfig.getType()));
 
-        series.setMaximumItemAge(60L * cutoffMinutes);
+        series.setMaximumItemAge(60L * graphConfig.getGraphLengthMinutes());
 
         final XYDataset dataset = new TimeSeriesCollection(series);
         JFreeChart timechart = ChartFactory.createTimeSeriesChart(
-                stockConfig.getName(),
-                "Time",
-                "Price",
+                graphConfig.getName(),
+                StockEntry.Fields.Time,
+                graphConfig.getType().toString(),
                 dataset,
                 false,
                 false,
@@ -55,15 +55,11 @@ public class StockGraphTask extends BukkitRunnable {
 
         int width = 1280;   /* Width of the image */
         int height = 720;  /* Height of the image */
-        File timeChart = new File(DSGraph.getInstance().getDataFolder() + "/" + stockConfig.getName() + ".jpeg");
+        File timeChart = new File(DSGraph.getInstance().getDataFolder() + "/" + graphConfig.getName() + ".jpeg");
         try {
             ChartUtils.saveChartAsJPEG(timeChart, timechart, width, height);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public Date convertToDate(LocalDate dateToConvert) {
-        return java.sql.Date.valueOf(dateToConvert);
     }
 }

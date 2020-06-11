@@ -1,6 +1,6 @@
-updateDataIntervalSeconds: 3
+updateDataIntervalSeconds: 5
 saveUnchangedData: true
-deleteAfterDays: 60
+deleteAfterDays: 7
 files:
   diamond:
     shopName: OreShop
@@ -8,3 +8,12 @@ files:
   gold:
     shopName: OreShop
     material: GOLD_INGOT
+graphConfigs:
+  diamond30m:
+    stockConfig: diamond
+    graphLengthMinutes: 30
+    type: PRICE
+  gold60m:
+    stockConfig: gold
+    graphLengthMinutes: 60
+    type: STOCK

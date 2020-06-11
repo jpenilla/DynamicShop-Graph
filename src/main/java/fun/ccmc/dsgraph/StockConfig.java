@@ -3,6 +3,8 @@ package fun.ccmc.dsgraph;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.FieldNameConstants;
 import org.apache.commons.io.input.ReversedLinesFileReader;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -15,6 +17,7 @@ import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+@FieldNameConstants
 public class StockConfig {
     @Getter
     private final String name;
@@ -92,7 +95,7 @@ public class StockConfig {
             ArrayList<String[]> al = new ArrayList<>();
             CSVReader reader2 = new CSVReader(new FileReader(path));
             reader2.readAll().forEach(line -> {
-                if (!line[0].equals("Time")) {
+                if (!line[0].equals(StockEntry.Fields.Time)) {
                     StockEntry u = new StockEntry(line);
                     if (u.getLocalDateTime().isAfter(LocalDateTime.now().minusDays(DSGraph.getInstance().getCfg().getDeleteAfterDays()))) {
                         al.add(u.getRecord());
