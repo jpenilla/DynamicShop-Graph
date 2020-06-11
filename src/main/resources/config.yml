@@ -1,0 +1,7 @@
+files:
+  diamond:
+    shopName: OreShop
+    material: DIAMOND
+  gold:
+    shopName: OreShop
+    material: GOLD_INGOT
