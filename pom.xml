@@ -42,7 +42,6 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <minimizeJar>true</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <relocations>
                                 <relocation>
@@ -52,6 +51,10 @@
                                 <relocation>
                                     <pattern>com.opencsv</pattern>
                                     <shadedPattern>fun.ccmc.dsgraph.lib.opencsv</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.jfree</pattern>
+                                    <shadedPattern>fun.ccmc.dsgraph.lib.jfree</shadedPattern>
                                 </relocation>
                                 <relocation>
                                     <pattern>co.aikar.commands</pattern>
@@ -132,8 +135,13 @@
         <dependency>
             <groupId>com.github.jmanpenilla</groupId>
             <artifactId>SSDynamicShop</artifactId>
-            <version>api-988715cb12-1</version>
+            <version>acf-e973664613-1</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.5.0</version>
         </dependency>
     </dependencies>
 </project>

@@ -1,9 +1,11 @@
 package fun.ccmc.dsgraph;
 
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.FieldNameConstants;
 import me.sat7.dynamicshop.DynaShopAPI;
 import org.bukkit.inventory.ItemStack;
+import org.jfree.data.time.Second;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,9 +13,13 @@ import java.util.Objects;
 
 @FieldNameConstants
 public class StockEntry {
+    @Getter
     private final int Median;
+    @Getter
     private final int Stock;
+    @Getter
     private final double Price;
+    @Getter
     private String Time;
 
     public StockEntry(@NonNull String shopName, @NonNull ItemStack item) {
@@ -38,6 +44,11 @@ public class StockEntry {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         this.Time = dtf.format(now);
+    }
+
+    public Second getSecond() {
+        String[] s = Time.split("[ /:]");
+        return new Second(Integer.parseInt(s[5]), Integer.parseInt(s[4]), Integer.parseInt(s[3]), Integer.parseInt(s[1]), Integer.parseInt(s[0]), Integer.parseInt(s[2]));
     }
 
     public String[] getRecord() {

@@ -11,7 +11,10 @@ public final class DSGraph extends JavaPlugin {
     public void onEnable() {
         instance = this;
         this.cfg = new Config(this);
-        new RecordDataTask().runTaskTimerAsynchronously(this, 0L, 20L * 3L);
+        new RecordDataTask().runTaskTimerAsynchronously(this, 0L, 20L * 5L);
+        cfg.getFiles().forEach(file -> {
+            new StockGraphTask(file).runTaskTimerAsynchronously(this, 0L, 20L * 15L);
+        });
     }
 
     @Override
