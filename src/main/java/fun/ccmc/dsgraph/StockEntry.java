@@ -40,10 +40,14 @@ public class StockEntry {
         return (Fields.Time + "," + Fields.Median + "," + Fields.Stock + "," + Fields.Price).split(",");
     }
 
-    private void setTime() {
+    public void setTime(LocalDateTime time) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+        this.Time = dtf.format(time);
+    }
+
+    public void setTime() {
         LocalDateTime now = LocalDateTime.now();
-        this.Time = dtf.format(now);
+        setTime(now);
     }
 
     public Second getSecond() {

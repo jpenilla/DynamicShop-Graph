@@ -12,6 +12,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class StockConfig {
@@ -76,6 +77,10 @@ public class StockConfig {
         if (!newEntry.equals(lastEntry)) {
             try {
                 CSVWriter writer = new CSVWriter(new FileWriter(path, true));
+                if (lastEntry != null) {
+                    lastEntry.setTime(LocalDateTime.now().minusSeconds(1L));
+                    writer.writeNext(lastEntry.getRecord());
+                }
                 writer.writeNext(newEntry.getRecord());
                 writer.close();
             } catch (IOException e) {
