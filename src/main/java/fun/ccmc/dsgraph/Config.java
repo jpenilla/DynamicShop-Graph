@@ -13,6 +13,12 @@ public class Config {
 
     @Getter
     private final ArrayList<StockConfig> files = new ArrayList<>();
+    @Getter
+    private int updateDataIntervalSeconds;
+    @Getter
+    private boolean saveUnchangedData;
+    @Getter
+    private int deleteAfterDays;
 
     public Config(DSGraph plugin) {
         this.plugin = plugin;
@@ -33,5 +39,9 @@ public class Config {
                 files.add(new StockConfig(shopName, key, material));
             }
         });
+
+        updateDataIntervalSeconds = config.getInt(Fields.updateDataIntervalSeconds);
+        saveUnchangedData = config.getBoolean(Fields.saveUnchangedData);
+        deleteAfterDays = config.getInt(Fields.deleteAfterDays);
     }
 }

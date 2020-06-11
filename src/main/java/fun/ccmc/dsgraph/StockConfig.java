@@ -22,16 +22,17 @@ public class StockConfig {
     private final Material material;
     @Getter
     private final String shopName;
+    @Getter
+    private final String path;
 
     public StockConfig(String shopName, String name, Material material) {
         this.name = name;
         this.material = material;
         this.shopName = shopName;
+        this.path = DSGraph.getInstance().getDataFolder() + "/" + name + ".csv";
     }
 
     public ArrayList<StockEntry> getHistory() {
-        String path = DSGraph.getInstance().getDataFolder() + "/" + name + ".csv";
-
         ArrayList<StockEntry> results = new ArrayList<>();
 
         try {
@@ -39,7 +40,7 @@ public class StockConfig {
             String[] data;
             while ((data = reader.readNext()) != null) {
                 if (!data[0].equals(StockEntry.Fields.Time)) {
-                    results.add(new StockEntry(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]), Double.parseDouble(data[3])));
+                    results.add(new StockEntry(data));
                 }
             }
         } catch (Exception e) {
@@ -50,8 +51,6 @@ public class StockConfig {
     }
 
     public void update() {
-        String path = DSGraph.getInstance().getDataFolder() + "/" + name + ".csv";
-
         StockEntry lastEntry = null;
 
         File file = new File(path);
@@ -66,15 +65,14 @@ public class StockConfig {
         } else {
             try {
                 String lastLine = new ReversedLinesFileReader(file, Charset.defaultCharset()).readLine();
-                String[] data = lastLine.replace("\"", "").split(",");
-                lastEntry = new StockEntry(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]), Double.parseDouble(data[3]));
+                lastEntry = new StockEntry(lastLine);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
         StockEntry newEntry = new StockEntry(shopName, new ItemStack(material));
-        if (!newEntry.equals(lastEntry)) {
+        if (!newEntry.equals(lastEntry) || DSGraph.getInstance().getCfg().isSaveUnchangedData()) {
             try {
                 CSVWriter writer = new CSVWriter(new FileWriter(path, true));
                 if (lastEntry != null) {
@@ -86,6 +84,28 @@ public class StockConfig {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void clean() {
+        try {
+            ArrayList<String[]> al = new ArrayList<>();
+            CSVReader reader2 = new CSVReader(new FileReader(path));
+            reader2.readAll().forEach(line -> {
+                if (!line[0].equals("Time")) {
+                    StockEntry u = new StockEntry(line);
+                    if (u.getLocalDateTime().isAfter(LocalDateTime.now().minusDays(DSGraph.getInstance().getCfg().getDeleteAfterDays()))) {
+                        al.add(u.getRecord());
+                    }
+                }
+            });
+
+            FileWriter sw = new FileWriter(path);
+            CSVWriter writer = new CSVWriter(sw);
+            writer.writeAll(al);
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

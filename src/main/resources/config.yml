@@ -1,3 +1,6 @@
+updateDataIntervalSeconds: 3
+saveUnchangedData: true
+deleteAfterDays: 60
 files:
   diamond:
     shopName: OreShop
