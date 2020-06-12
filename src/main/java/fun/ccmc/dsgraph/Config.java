@@ -49,7 +49,8 @@ public class Config {
                 if (f.getName().equals(name)) {
                     int length = config.getInt(Fields.graphConfigs + "." + key + "." + GraphConfig.Fields.graphLengthMinutes);
                     GraphConfig.GraphType type = GraphConfig.GraphType.valueOf(config.getString(Fields.graphConfigs + "." + key + "." + GraphConfig.Fields.type));
-                    graphConfigs.add(new GraphConfig(key, f, length, type));
+                    int refreshTime = config.getInt(Fields.graphConfigs + "." + key + "." + GraphConfig.Fields.graphRefreshTimeSeconds);
+                    graphConfigs.add(new GraphConfig(key, f, length, type, refreshTime));
                 }
             });
         });

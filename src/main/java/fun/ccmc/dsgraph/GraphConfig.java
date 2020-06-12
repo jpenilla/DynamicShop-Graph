@@ -12,12 +12,15 @@ public class GraphConfig {
     @Getter
     private final int graphLengthMinutes;
     @Getter
+    private final int graphRefreshTimeSeconds;
+    @Getter
     private final GraphType type;
 
-    public GraphConfig(String name, StockConfig config, int length, GraphType type) {
+    public GraphConfig(String name, StockConfig config, int length, GraphType type, int refreshTime) {
         this.name = name;
         this.stockConfig = config;
         this.graphLengthMinutes = length;
+        this.graphRefreshTimeSeconds = refreshTime;
         this.type = type;
     }
 

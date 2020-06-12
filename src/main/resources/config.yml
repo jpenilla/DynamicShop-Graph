@@ -12,8 +12,10 @@ graphConfigs:
   diamond30m:
     stockConfig: diamond
     graphLengthMinutes: 30
+    graphRefreshTimeSeconds: 10
     type: PRICE
   gold60m:
     stockConfig: gold
     graphLengthMinutes: 60
+    graphRefreshTimeSeconds: 10
     type: STOCK
