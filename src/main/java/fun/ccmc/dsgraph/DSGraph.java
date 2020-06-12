@@ -1,6 +1,7 @@
 package fun.ccmc.dsgraph;
 
 import lombok.Getter;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -21,6 +22,9 @@ public final class DSGraph extends JavaPlugin {
         cfg.getGraphConfigs().forEach(file -> {
             new StockGraphTask(file).runTaskTimerAsynchronously(this, 0L, 20L * file.getGraphRefreshTimeSeconds());
         });
+
+        int pluginId = 7828;
+        Metrics metrics = new Metrics(this, pluginId);
     }
 
     @Override
