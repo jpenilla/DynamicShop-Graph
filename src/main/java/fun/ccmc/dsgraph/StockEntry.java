@@ -21,7 +21,8 @@ public class StockEntry {
     private final int Stock;
     @Getter
     private final double Price;
-    @Getter @NonNull
+    @Getter
+    @NonNull
     private String Time;
 
     public StockEntry(String entry) {
@@ -42,7 +43,7 @@ public class StockEntry {
     public StockEntry(@NonNull String shopName, @NonNull ItemStack item) {
         this.Median = DynaShopAPI.getMedian(shopName, item);
         this.Stock = DynaShopAPI.getStock(shopName, item);
-        this.Price = DynaShopAPI.getBuyPrice(shopName, item);
+        this.Price = (double) Math.round(DynaShopAPI.getBuyPrice(shopName, item) * 100) / 100;
         setTime();
     }
 

@@ -3,7 +3,6 @@ package fun.ccmc.dsgraph;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.experimental.FieldNameConstants;
 import org.apache.commons.io.input.ReversedLinesFileReader;
 import org.bukkit.Material;
@@ -100,6 +99,8 @@ public class StockConfig {
                     if (u.getLocalDateTime().isAfter(LocalDateTime.now().minusDays(DSGraph.getInstance().getCfg().getDeleteAfterDays()))) {
                         al.add(u.getRecord());
                     }
+                } else {
+                    al.add(StockEntry.getHeader());
                 }
             });
 

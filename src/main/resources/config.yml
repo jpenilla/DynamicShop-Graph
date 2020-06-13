@@ -1,5 +1,5 @@
 updateDataIntervalSeconds: 5
-saveUnchangedData: true
+saveUnchangedData: false
 deleteAfterDays: 7
 files:
   diamond:

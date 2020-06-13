@@ -6,8 +6,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public final class DSGraph extends JavaPlugin {
-    @Getter private static DSGraph instance;
-    @Getter private Config cfg;
+    @Getter
+    private static DSGraph instance;
+    @Getter
+    private Config cfg;
 
     private BukkitRunnable recordDataTask = null;
 
