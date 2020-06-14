@@ -143,7 +143,7 @@
         <dependency>
             <groupId>com.github.7sat</groupId>
             <artifactId>SSDynamicShop</artifactId>
-            <version>892bfaa01c</version>
+            <version>054e176ba8</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
