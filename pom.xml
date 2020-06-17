@@ -53,6 +53,10 @@
                                     <shadedPattern>fun.ccmc.dsgraph.lib.eclipse</shadedPattern>
                                 </relocation>
                                 <relocation>
+                                    <pattern>javax.servlet</pattern>
+                                    <shadedPattern>fun.ccmc.dsgraph.lib.javax.servlet</shadedPattern>
+                                </relocation>
+                                <relocation>
                                     <pattern>com.opencsv</pattern>
                                     <shadedPattern>fun.ccmc.dsgraph.lib.opencsv</shadedPattern>
                                 </relocation>
