@@ -1,5 +1,7 @@
-package fun.ccmc.dsgraph;
+package fun.ccmc.dsgraph.task;
 
+import fun.ccmc.dsgraph.DSGraph;
+import fun.ccmc.dsgraph.config.StockConfig;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class CleanOldDataTask extends BukkitRunnable {

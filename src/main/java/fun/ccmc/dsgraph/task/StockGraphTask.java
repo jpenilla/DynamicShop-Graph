@@ -1,5 +1,9 @@
-package fun.ccmc.dsgraph;
+package fun.ccmc.dsgraph.task;
 
+import fun.ccmc.dsgraph.DSGraph;
+import fun.ccmc.dsgraph.config.GraphConfig;
+import fun.ccmc.dsgraph.config.StockConfig;
+import fun.ccmc.dsgraph.StockEntry;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jfree.chart.ChartFactory;
@@ -55,7 +59,7 @@ public class StockGraphTask extends BukkitRunnable {
 
         int width = 1280;   /* Width of the image */
         int height = 720;  /* Height of the image */
-        File timeChart = new File(DSGraph.getInstance().getDataFolder() + "/" + graphConfig.getName() + ".jpeg");
+        File timeChart = new File(DSGraph.getInstance().getDataFolder() + "/web/img/" + graphConfig.getName() + ".jpeg");
         try {
             ChartUtils.saveChartAsJPEG(timeChart, timechart, width, height);
         } catch (IOException e) {

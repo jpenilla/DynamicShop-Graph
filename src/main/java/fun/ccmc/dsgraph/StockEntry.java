@@ -1,5 +1,6 @@
 package fun.ccmc.dsgraph;
 
+import fun.ccmc.dsgraph.config.GraphConfig;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.FieldNameConstants;

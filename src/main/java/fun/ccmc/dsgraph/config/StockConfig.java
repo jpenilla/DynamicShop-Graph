@@ -1,7 +1,9 @@
-package fun.ccmc.dsgraph;
+package fun.ccmc.dsgraph.config;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
+import fun.ccmc.dsgraph.DSGraph;
+import fun.ccmc.dsgraph.StockEntry;
 import lombok.Getter;
 import lombok.experimental.FieldNameConstants;
 import org.apache.commons.io.input.ReversedLinesFileReader;
@@ -31,7 +33,7 @@ public class StockConfig {
         this.name = name;
         this.material = material;
         this.shopName = shopName;
-        this.path = DSGraph.getInstance().getDataFolder() + "/" + name + ".csv";
+        this.path = DSGraph.getInstance().getDataFolder() + "/web/data/" + name + ".csv";
     }
 
     public ArrayList<StockEntry> getHistory() {

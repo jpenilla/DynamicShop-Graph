@@ -1,5 +1,6 @@
-package fun.ccmc.dsgraph;
+package fun.ccmc.dsgraph.config;
 
+import fun.ccmc.dsgraph.DSGraph;
 import lombok.Getter;
 import lombok.experimental.FieldNameConstants;
 import org.bukkit.Material;

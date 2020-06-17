@@ -45,8 +45,12 @@
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <relocations>
                                 <relocation>
-                                    <pattern>org.apache.commons.io</pattern>
-                                    <shadedPattern>fun.ccmc.dsgraph.lib.apachecommons.io</shadedPattern>
+                                    <pattern>org.apache</pattern>
+                                    <shadedPattern>fun.ccmc.dsgraph.lib.apache</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.eclipse</pattern>
+                                    <shadedPattern>fun.ccmc.dsgraph.lib.eclipse</shadedPattern>
                                 </relocation>
                                 <relocation>
                                     <pattern>com.opencsv</pattern>
@@ -141,9 +145,9 @@
             <version>0.5.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.github.7sat</groupId>
+            <groupId>com.github.jmanpenilla</groupId>
             <artifactId>SSDynamicShop</artifactId>
-            <version>054e176ba8</version>
+            <version>api-event-7df98bbd8e-1	</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -156,6 +160,11 @@
             <artifactId>bstats-bukkit</artifactId>
             <version>1.7</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.4.30.v20200611</version>
         </dependency>
     </dependencies>
 </project>
