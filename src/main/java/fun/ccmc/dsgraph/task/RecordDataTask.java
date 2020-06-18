@@ -10,13 +10,15 @@ public class RecordDataTask extends BukkitRunnable {
 
     @Override
     public void run() {
-        ArrayList<StockConfig> temp = new ArrayList<>(queue);
-        queue.forEach(item -> {
-            temp.remove(item);
-            item.update();
-        });
-        queue.clear();
-        queue.addAll(temp);
+        if (queue.size() != 0) {
+            ArrayList<StockConfig> temp = new ArrayList<>(queue);
+            queue.forEach(item -> {
+                temp.remove(item);
+                item.update();
+            });
+            queue.clear();
+            queue.addAll(temp);
+        }
     }
 
     public void queue(StockConfig config) {
