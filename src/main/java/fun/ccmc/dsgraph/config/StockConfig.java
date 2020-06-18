@@ -28,12 +28,13 @@ public class StockConfig {
     private final String shopName;
     @Getter
     private final String path;
+    private final String folderPath = DSGraph.getInstance().getDataFolder() + "/web/data/";
 
     public StockConfig(String shopName, String name, Material material) {
         this.name = name;
         this.material = material;
         this.shopName = shopName;
-        this.path = DSGraph.getInstance().getDataFolder() + "/web/data/" + name + ".csv";
+        this.path = folderPath + name + ".csv";
     }
 
     public ArrayList<StockEntry> getHistory() {
@@ -56,6 +57,11 @@ public class StockConfig {
 
     public void update() {
         StockEntry lastEntry = null;
+
+        File folder = new File(folderPath);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
 
         File file = new File(path);
         if (!file.exists()) {

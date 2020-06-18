@@ -1,7 +1,6 @@
 package fun.ccmc.dsgraph.task;
 
 import fun.ccmc.dsgraph.DSGraph;
-import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
@@ -13,24 +12,24 @@ import java.io.File;
 
 public class WebServerTask extends BukkitRunnable {
     private final Server server = new Server(8180);
+    private final String path = DSGraph.getInstance().getDataFolder() + "/web";
 
     @Override
     public void run() {
-        // Create the ResourceHandler. It is the object that will actually
-        // handle the request for a given file. It is a Jetty Handler object
-        // so it is suitable for chaining with other handlers as you will see
-        // in other examples
-        ResourceHandler resource_handler = new ResourceHandler();
+        ResourceHandler handler = new ResourceHandler();
 
-        // Configure the ResourceHandler. Setting the resource base indicates
-        // where the files should be served out of
-        resource_handler.setDirectoriesListed(true);
-        resource_handler.setWelcomeFiles(new String[]{ "index.html" });
-        resource_handler.setResourceBase(DSGraph.getInstance().getDataFolder() + "/web");
+        handler.setDirectoriesListed(true);
+        handler.setWelcomeFiles(new String[]{"index.html"});
 
-        // Add the ResourceHandler to the server
+        File folder = new File(path);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+
+        handler.setResourceBase(path);
+
         HandlerList handlers = new HandlerList();
-        handlers.setHandlers(new Handler[] { resource_handler, new DefaultHandler() });
+        handlers.setHandlers(new Handler[]{handler, new DefaultHandler()});
         server.setHandler(handlers);
 
         startServer();

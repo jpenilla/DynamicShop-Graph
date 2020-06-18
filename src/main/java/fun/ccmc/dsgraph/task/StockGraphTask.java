@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class StockGraphTask extends BukkitRunnable {
+    private final String folderPath = DSGraph.getInstance().getDataFolder() + "/web/img/";
     private final StockConfig stockConfig;
     private final GraphConfig graphConfig;
     private final LocalDateTime cutoff;
@@ -59,7 +60,13 @@ public class StockGraphTask extends BukkitRunnable {
 
         int width = 1280;   /* Width of the image */
         int height = 720;  /* Height of the image */
-        File timeChart = new File(DSGraph.getInstance().getDataFolder() + "/web/img/" + graphConfig.getName() + ".jpeg");
+
+        File folder = new File(folderPath);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+
+        File timeChart = new File(folderPath + graphConfig.getName() + ".jpeg");
         try {
             ChartUtils.saveChartAsJPEG(timeChart, timechart, width, height);
         } catch (IOException e) {
