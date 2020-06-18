@@ -42,5 +42,6 @@ public final class DSGraph extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        taskManager.stop();
     }
 }

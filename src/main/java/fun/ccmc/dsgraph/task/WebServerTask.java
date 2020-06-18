@@ -58,6 +58,6 @@ public class WebServerTask extends BukkitRunnable {
 
     public synchronized void cancel() throws IllegalStateException {
         stopServer();
-        Bukkit.getScheduler().cancelTask(getTaskId());
+        super.cancel();
     }
 }
