@@ -37,6 +37,7 @@ public class CommandDSGraph extends BaseCommand {
     @Subcommand("reload")
     public void onReload(CommandSender sender) {
         Chat.sendCenteredMessage(sender, "&a&oReloading plugin...");
+        plugin.getCfg().load();
         plugin.getTaskManager().restart();
         Chat.sendCenteredMessage(sender, "&aDone reloading plugin");
     }

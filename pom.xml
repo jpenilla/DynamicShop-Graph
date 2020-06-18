@@ -78,7 +78,7 @@
                                 </relocation>
                                 <relocation>
                                     <pattern>fun.ccmc.jmplib</pattern>
-                                    <shadedPattern>fun.ccmc.dsgraph.jmplib</shadedPattern>
+                                    <shadedPattern>fun.ccmc.dsgraph.lib.jmplib</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>

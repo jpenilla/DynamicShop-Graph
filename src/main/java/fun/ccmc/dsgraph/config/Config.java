@@ -30,7 +30,7 @@ public class Config {
         load();
     }
 
-    private void load() {
+    public void load() {
         plugin.reloadConfig();
         FileConfiguration config = plugin.getConfig();
 
