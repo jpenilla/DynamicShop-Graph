@@ -1,11 +1,11 @@
 package fun.ccmc.dsgraph;
 
+import co.aikar.commands.PaperCommandManager;
+import fun.ccmc.dsgraph.command.CommandDSGraph;
+import fun.ccmc.dsgraph.command.CommandHelper;
 import fun.ccmc.dsgraph.config.Config;
-import fun.ccmc.dsgraph.task.CleanOldDataTask;
-import fun.ccmc.dsgraph.task.QueueUpdatesTask;
-import fun.ccmc.dsgraph.task.RecordDataTask;
-import fun.ccmc.dsgraph.task.StockGraphTask;
 import lombok.Getter;
+import lombok.Setter;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -15,43 +15,32 @@ public final class DSGraph extends JavaPlugin {
     @Getter
     private Config cfg;
     @Getter
-    private RecordDataTask recordDataTask = null;
+    private TaskManager taskManager;
+    @Getter
+    private CommandHelper commandHelper;
+    @Getter @Setter
+    private PaperCommandManager commandManager;
 
     @Override
     public void onEnable() {
         instance = this;
         this.cfg = new Config(this);
+        this.taskManager = new TaskManager(this);
 
-        startRecording();
-        new QueueUpdatesTask().runTaskTimerAsynchronously(this, 0L, 20L * 60L);
-        new CleanOldDataTask().runTaskTimerAsynchronously(this, 20L * 10L, 20L * 60L * 5L);
+        this.commandManager = new PaperCommandManager(this);
+        commandManager.enableUnstableAPI("help");
+        commandManager.setDefaultHelpPerPage(5);
+        this.commandHelper = new CommandHelper(this);
+        commandHelper.register();
+        commandManager.registerCommand(new CommandDSGraph(this));
 
-        cfg.getGraphConfigs().forEach(file -> {
-            new StockGraphTask(file).runTaskTimerAsynchronously(this, 0L, 20L * file.getGraphRefreshTimeSeconds());
-        });
+        getServer().getPluginManager().registerEvents(new ShopListener(), this);
 
         int pluginId = 7828;
         Metrics metrics = new Metrics(this, pluginId);
-
-        new WebServer().runTaskAsynchronously(this);
-
-        getServer().getPluginManager().registerEvents(new ShopListener(), this);
     }
 
     @Override
     public void onDisable() {
-    }
-
-    public void startRecording() {
-        if (recordDataTask != null) {
-            recordDataTask.cancel();
-        }
-        recordDataTask = new RecordDataTask();
-        recordDataTask.runTaskTimerAsynchronously(this, 0L, 20L * 2L);
-    }
-
-    public void stopRecording() {
-        recordDataTask.cancel();
-        recordDataTask = null;
     }
 }

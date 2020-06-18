@@ -76,6 +76,10 @@
                                     <pattern>org.bstats</pattern>
                                     <shadedPattern>fun.ccmc.dsgraph.lib.bstats</shadedPattern>
                                 </relocation>
+                                <relocation>
+                                    <pattern>fun.ccmc.jmplib</pattern>
+                                    <shadedPattern>fun.ccmc.dsgraph.jmplib</shadedPattern>
+                                </relocation>
                             </relocations>
                         </configuration>
                     </execution>
@@ -110,6 +114,10 @@
         <repository>
             <id>CodeMC</id>
             <url>https://repo.codemc.org/repository/maven-public</url>
+        </repository>
+        <repository>
+            <id>jmp-repo</id>
+            <url>https://mvn.ccmc.fun/repository/internal</url>
         </repository>
     </repositories>
 
@@ -169,6 +177,12 @@
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
             <version>9.4.30.v20200611</version>
+        </dependency>
+        <dependency>
+            <groupId>fun.ccmc.jmplib</groupId>
+            <artifactId>jmplib</artifactId>
+            <version>1.0.0-SNAPSHOT.33</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

@@ -7,10 +7,10 @@ import org.bukkit.event.Listener;
 public class ShopListener implements Listener {
     @EventHandler
     public void onShop(ShopBuySellEvent e) {
-        if (DSGraph.getInstance().getRecordDataTask() != null) {
+        if (DSGraph.getInstance().getTaskManager().getRecordDataTask() != null) {
             DSGraph.getInstance().getCfg().getFiles().forEach(stockConfig -> {
                 if (e.getMerchandise().equals(stockConfig.getMaterial()) && e.getShopName().equals(stockConfig.getShopName())) {
-                    DSGraph.getInstance().getRecordDataTask().queue(stockConfig);
+                    DSGraph.getInstance().getTaskManager().getRecordDataTask().queue(stockConfig);
                 }
             });
         }
