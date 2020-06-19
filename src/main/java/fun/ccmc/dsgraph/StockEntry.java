@@ -9,12 +9,14 @@ import org.bukkit.inventory.ItemStack;
 import org.jfree.data.time.Second;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Objects;
 
 @FieldNameConstants
 public class StockEntry {
-    private static final String DATE_FORMAT = "MM/dd/yyyy HH:mm:ss";
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     @Getter
     private final int Median;
@@ -60,23 +62,23 @@ public class StockEntry {
     }
 
     public void setTime(LocalDateTime time) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(DATE_FORMAT);
-        this.Time = dtf.format(time);
+        this.Time = DATE_TIME_FORMATTER.format(time);
     }
 
     public LocalDateTime getLocalDateTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
-        return LocalDateTime.parse(Time, formatter);
+        return LocalDateTime.parse(Time, DATE_TIME_FORMATTER);
+    }
+
+    public Date getDate() {
+        return Date.from(getLocalDateTime().atZone(ZoneId.systemDefault()).toInstant());
     }
 
     public void setTime() {
-        LocalDateTime now = LocalDateTime.now();
-        setTime(now);
+        setTime(LocalDateTime.now());
     }
 
     public Second getSecond() {
-        String[] s = Time.split("[ /:]");
-        return new Second(Integer.parseInt(s[5]), Integer.parseInt(s[4]), Integer.parseInt(s[3]), Integer.parseInt(s[1]), Integer.parseInt(s[0]), Integer.parseInt(s[2]));
+        return new Second(getDate());
     }
 
     public String[] getRecord() {
