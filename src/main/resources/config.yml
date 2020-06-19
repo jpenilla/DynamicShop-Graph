@@ -13,14 +13,3 @@ files:
   Iron:
     shopName: Ore
     material: IRON_INGOT
-graphConfigs:
-  diamond30m:
-    stockConfig: Diamond
-    graphLengthMinutes: 30
-    graphRefreshTimeSeconds: 10
-    type: PRICE
-  gold60m:
-    stockConfig: Gold
-    graphLengthMinutes: 60
-    graphRefreshTimeSeconds: 10
-    type: STOCK

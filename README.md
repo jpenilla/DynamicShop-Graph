@@ -1,5 +1,5 @@
 # DynamicShop-Graph
-Spigot Plugin to record and graph data from the DynamicShop plugin
+Spigot Plugin to record and graph data from the [DynamicShop](https://github.com/7sat/SSDynamicShop) plugin
 
 ## Features
  * Record the price, stock, and median of an item in a shop in a CSV file.
