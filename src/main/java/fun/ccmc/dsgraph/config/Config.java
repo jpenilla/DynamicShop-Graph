@@ -22,6 +22,8 @@ public class Config {
     private int port;
     @Getter
     private boolean webServer;
+    @Getter
+    private boolean customHTML;
 
     public Config(DSGraph plugin) {
         this.plugin = plugin;
@@ -47,5 +49,6 @@ public class Config {
         deleteAfterDays = config.getInt(Fields.deleteAfterDays);
         port = config.getInt(Fields.port);
         webServer = config.getBoolean(Fields.webServer);
+        customHTML = config.getBoolean(Fields.customHTML);
     }
 }

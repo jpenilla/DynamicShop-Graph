@@ -2,6 +2,7 @@ saveUnchangedData: true
 deleteAfterDays: 120
 webServer: true
 port: 8180
+customHTML: false
 files:
   Diamond:
     shopName: Ore

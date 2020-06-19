@@ -31,7 +31,7 @@ public class WebServerTask extends BukkitRunnable {
         //Copy index.html
         String indexHTMLname = "index.html";
         File indexHTML = new File(path + "/" + indexHTMLname);
-        if (!indexHTML.exists()) {
+        if (!indexHTML.exists() || !DSGraph.getInstance().getCfg().isCustomHTML()) {
             try {
                 FileUtils.copyToFile(DSGraph.getInstance().getResource(indexHTMLname), indexHTML);
             } catch (IOException ex) {
