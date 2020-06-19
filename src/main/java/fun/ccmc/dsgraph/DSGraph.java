@@ -18,7 +18,8 @@ public final class DSGraph extends JavaPlugin {
     private TaskManager taskManager;
     @Getter
     private CommandHelper commandHelper;
-    @Getter @Setter
+    @Getter
+    @Setter
     private PaperCommandManager commandManager;
 
     @Override

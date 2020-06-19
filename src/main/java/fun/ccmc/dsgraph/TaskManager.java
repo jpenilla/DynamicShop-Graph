@@ -29,7 +29,9 @@ public class TaskManager {
         startQueueUpdatesTask();
         startCleanOldDataTask();
         startStockGraphTasks();
-        startWebServerTask();
+        if (DSGraph.getInstance().getCfg().isWebServer()) {
+            startWebServerTask();
+        }
     }
 
     public void stop() {
@@ -101,7 +103,7 @@ public class TaskManager {
         stopStockGraphTasks();
         plugin.getCfg().getGraphConfigs().forEach(file -> {
             StockGraphTask task = new StockGraphTask(file);
-            task.runTaskTimerAsynchronously(plugin, 0L, 20L * file.getGraphRefreshTimeSeconds());
+            task.runTaskTimerAsynchronously(plugin, 20L * 5L, 20L * file.getGraphRefreshTimeSeconds());
             stockGraphTasks.add(task);
         });
     }

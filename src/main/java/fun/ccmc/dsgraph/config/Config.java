@@ -22,6 +22,10 @@ public class Config {
     private boolean saveUnchangedData;
     @Getter
     private int deleteAfterDays;
+    @Getter
+    private int port;
+    @Getter
+    private boolean webServer;
 
     public Config(DSGraph plugin) {
         this.plugin = plugin;
@@ -59,5 +63,7 @@ public class Config {
         updateDataIntervalSeconds = config.getInt(Fields.updateDataIntervalSeconds);
         saveUnchangedData = config.getBoolean(Fields.saveUnchangedData);
         deleteAfterDays = config.getInt(Fields.deleteAfterDays);
+        port = config.getInt(Fields.port);
+        webServer = config.getBoolean(Fields.webServer);
     }
 }

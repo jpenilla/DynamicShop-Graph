@@ -160,7 +160,7 @@
         <dependency>
             <groupId>com.github.jmanpenilla</groupId>
             <artifactId>SSDynamicShop</artifactId>
-            <version>api-event-7df98bbd8e-1	</version>
+            <version>api-event-419c987c2a-1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

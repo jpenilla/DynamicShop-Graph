@@ -1,0 +1,21 @@
+<html>
+
+<head>
+    <script language="JavaScript">
+        const urlParams = new URLSearchParams(window.location.search);
+        const graph = urlParams.get('graph');
+        function refreshIt() {
+            if (!document.images) return;
+            document.images['i'].src = "img/" + graph + '.jpeg?' + Math.random();
+            setTimeout('refreshIt()', 3000);
+        }
+    </script>
+</head>
+
+<body onLoad=" setTimeout('refreshIt()',0)">
+
+<img src="" name="i">
+
+</body>
+
+</html>

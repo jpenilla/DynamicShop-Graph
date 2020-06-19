@@ -1,6 +1,8 @@
 updateDataIntervalSeconds: 5
 saveUnchangedData: false
 deleteAfterDays: 7
+webServer: true
+port: 8180
 files:
   diamond:
     shopName: OreShop

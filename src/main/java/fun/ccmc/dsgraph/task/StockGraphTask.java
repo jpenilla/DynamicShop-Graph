@@ -32,6 +32,11 @@ public class StockGraphTask extends BukkitRunnable {
 
     @Override
     public void run() {
+        File folder = new File(folderPath);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+
         TimeSeries series = new TimeSeries(stockConfig.getName());
 
         //Plot value history
@@ -60,11 +65,6 @@ public class StockGraphTask extends BukkitRunnable {
 
         int width = 1280;   /* Width of the image */
         int height = 720;  /* Height of the image */
-
-        File folder = new File(folderPath);
-        if (!folder.exists()) {
-            folder.mkdirs();
-        }
 
         File timeChart = new File(folderPath + graphConfig.getName() + ".jpeg");
         try {

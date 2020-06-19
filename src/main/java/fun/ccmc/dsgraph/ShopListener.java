@@ -9,7 +9,7 @@ public class ShopListener implements Listener {
     public void onShop(ShopBuySellEvent e) {
         if (DSGraph.getInstance().getTaskManager().getRecordDataTask() != null) {
             DSGraph.getInstance().getCfg().getFiles().forEach(stockConfig -> {
-                if (e.getMerchandise().equals(stockConfig.getMaterial()) && e.getShopName().equals(stockConfig.getShopName())) {
+                if (e.getMaterial().equals(stockConfig.getMaterial()) && e.getShopName().equals(stockConfig.getShopName())) {
                     DSGraph.getInstance().getTaskManager().getRecordDataTask().queue(stockConfig);
                 }
             });

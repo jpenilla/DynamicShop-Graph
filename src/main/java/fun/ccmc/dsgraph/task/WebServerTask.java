@@ -1,6 +1,7 @@
 package fun.ccmc.dsgraph.task;
 
 import fun.ccmc.dsgraph.DSGraph;
+import org.apache.commons.io.FileUtils;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
@@ -9,9 +10,10 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 
 import java.io.File;
+import java.io.IOException;
 
 public class WebServerTask extends BukkitRunnable {
-    private final Server server = new Server(8180);
+    private final Server server = new Server(DSGraph.getInstance().getCfg().getPort());
     private final String path = DSGraph.getInstance().getDataFolder() + "/web";
 
     @Override
@@ -19,11 +21,21 @@ public class WebServerTask extends BukkitRunnable {
         ResourceHandler handler = new ResourceHandler();
 
         handler.setDirectoriesListed(true);
-        handler.setWelcomeFiles(new String[]{"index.html"});
 
+        //Create web server dir
         File folder = new File(path);
         if (!folder.exists()) {
             folder.mkdirs();
+        }
+
+        //Copy graph.html
+        File graphHtml = new File(path + "/graph.html");
+        if (!graphHtml.exists()) {
+            try {
+                FileUtils.copyToFile(DSGraph.getInstance().getResource("graph.html"), graphHtml);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
         handler.setResourceBase(path);
