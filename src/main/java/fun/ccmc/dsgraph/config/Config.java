@@ -15,8 +15,6 @@ public class Config {
     @Getter
     private final ArrayList<StockConfig> files = new ArrayList<>();
     @Getter
-    private final ArrayList<GraphConfig> graphConfigs = new ArrayList<>();
-    @Getter
     private boolean saveUnchangedData;
     @Getter
     private int deleteAfterDays;
@@ -43,19 +41,6 @@ public class Config {
             if (material != null) {
                 files.add(new StockConfig(shopName, key, material));
             }
-        });
-
-        graphConfigs.clear();
-        files.forEach(f -> {
-            config.getConfigurationSection(Fields.graphConfigs).getKeys(false).forEach(key -> {
-                String name = config.getString(Fields.graphConfigs + "." + key + "." + GraphConfig.Fields.stockConfig);
-                if (f.getName().equals(name)) {
-                    int length = config.getInt(Fields.graphConfigs + "." + key + "." + GraphConfig.Fields.graphLengthMinutes);
-                    GraphConfig.GraphType type = GraphConfig.GraphType.valueOf(config.getString(Fields.graphConfigs + "." + key + "." + GraphConfig.Fields.type));
-                    int refreshTime = config.getInt(Fields.graphConfigs + "." + key + "." + GraphConfig.Fields.graphRefreshTimeSeconds);
-                    graphConfigs.add(new GraphConfig(key, f, length, type, refreshTime));
-                }
-            });
         });
 
         saveUnchangedData = config.getBoolean(Fields.saveUnchangedData);

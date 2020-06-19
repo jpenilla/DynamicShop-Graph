@@ -28,17 +28,6 @@ public class WebServerTask extends BukkitRunnable {
             folder.mkdirs();
         }
 
-        //Copy img.html
-        String imgHTMLname = "img.html";
-        File imgHTML = new File(path + "/" + imgHTMLname);
-        if (!imgHTML.exists()) {
-            try {
-                FileUtils.copyToFile(DSGraph.getInstance().getResource(imgHTMLname), imgHTML);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-
         //Copy index.html
         String indexHTMLname = "index.html";
         File indexHTML = new File(path + "/" + indexHTMLname);

@@ -6,7 +6,6 @@ import lombok.NonNull;
 import lombok.experimental.FieldNameConstants;
 import me.sat7.dynamicshop.DynaShopAPI;
 import org.bukkit.inventory.ItemStack;
-import org.jfree.data.time.Second;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -75,10 +74,6 @@ public class StockEntry {
 
     public void setTime() {
         setTime(LocalDateTime.now());
-    }
-
-    public Second getSecond() {
-        return new Second(getDate());
     }
 
     public String[] getRecord() {

@@ -29,6 +29,7 @@ public class RecordDataTask extends BukkitRunnable {
                     ex.printStackTrace();
                 }
             }
+
             ArrayList<StockConfig> temp = new ArrayList<>(queue);
             temp.forEach(item -> {
                 queue.remove(item);

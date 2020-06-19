@@ -1,15 +1,13 @@
 package fun.ccmc.dsgraph;
 
-import fun.ccmc.dsgraph.task.*;
+import fun.ccmc.dsgraph.task.CleanOldDataTask;
+import fun.ccmc.dsgraph.task.QueueUpdatesTask;
+import fun.ccmc.dsgraph.task.RecordDataTask;
+import fun.ccmc.dsgraph.task.WebServerTask;
 import lombok.Getter;
-import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.ArrayList;
 
 public class TaskManager {
     private final DSGraph plugin;
-    @Getter
-    private final ArrayList<StockGraphTask> stockGraphTasks = new ArrayList<>();
     @Getter
     private RecordDataTask recordDataTask = null;
     @Getter
@@ -28,7 +26,6 @@ public class TaskManager {
         startRecordDataTask();
         startQueueUpdatesTask();
         startCleanOldDataTask();
-        startStockGraphTasks();
         if (DSGraph.getInstance().getCfg().isWebServer()) {
             startWebServerTask();
         }
@@ -36,7 +33,6 @@ public class TaskManager {
 
     public void stop() {
         stopWebServerTask();
-        stopStockGraphTasks();
         stopCleanOldDataTask();
         stopQueueUpdatesTask();
         stopRecordDataTask();
@@ -97,19 +93,5 @@ public class TaskManager {
             cleanOldDataTask.cancel();
         }
         cleanOldDataTask = null;
-    }
-
-    public void startStockGraphTasks() {
-        stopStockGraphTasks();
-        plugin.getCfg().getGraphConfigs().forEach(file -> {
-            StockGraphTask task = new StockGraphTask(file);
-            task.runTaskTimerAsynchronously(plugin, 20L * 5L, 20L * file.getGraphRefreshTimeSeconds());
-            stockGraphTasks.add(task);
-        });
-    }
-
-    public void stopStockGraphTasks() {
-        stockGraphTasks.forEach(BukkitRunnable::cancel);
-        stockGraphTasks.clear();
     }
 }
