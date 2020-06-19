@@ -28,12 +28,23 @@ public class WebServerTask extends BukkitRunnable {
             folder.mkdirs();
         }
 
-        //Copy graph.html
+        //Copy img.html
         String imgHTMLname = "img.html";
         File imgHTML = new File(path + "/" + imgHTMLname);
         if (!imgHTML.exists()) {
             try {
                 FileUtils.copyToFile(DSGraph.getInstance().getResource(imgHTMLname), imgHTML);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        //Copy graph.html
+        String graphHTMLname = "graph.html";
+        File graphHTML = new File(path + "/" + graphHTMLname);
+        if (!graphHTML.exists()) {
+            try {
+                FileUtils.copyToFile(DSGraph.getInstance().getResource(graphHTMLname), graphHTML);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

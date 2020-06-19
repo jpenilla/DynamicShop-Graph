@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>DynamicShop-Graph Interactive Graph</title>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://code.highcharts.com/stock/highstock.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+    </head>
+
+    <body>
+        <div id="container" style="height: 400px; min-width: 310px"></div>
+
+        <script language="JavaScript">
+            const urlParams = new URLSearchParams(window.location.search);
+            const dataFile = urlParams.get('data');
+
+            $(document).ready(function () {
+                $.get('./data/' + dataFile + '.csv', function (csvString) {
+
+                    var csv = Papa.parse($.trim(csvString));
+
+                    Highcharts.stockChart('container', {
+                        rangeSelector: {
+                            selected: 1
+                        },
+
+                        title: {
+                            text: dataFile
+                        },
+
+                        data: {
+                            rows: csv.data
+                        },
+
+                        legend: {
+                            enabled: true
+                        },
+
+                        series: [{
+                            tooltip: {
+                                valueDecimals: 2
+                            }
+                        }]
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
