@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     <title>DynamicShop-Graph</title>
 
-    <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css"
           rel="stylesheet" media="screen,projection"/>
@@ -21,7 +20,6 @@
 <body>
 <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">DynamicShop-Graph</a>
-
         <ul id="nav-mobile" class="sidenav">
             <li><a href="#">Navbar Link</a></li>
         </ul>
@@ -31,13 +29,11 @@
 <div class="section no-pad-bot" id="index-banner">
     <div class="container">
         <div class="row center">
-
             <div class="input-field">
                 <select id="data-select">
                     <option value="" selected>Choose an item</option>
                 </select>
             </div>
-
         </div>
 
         <script language="JavaScript">
@@ -60,8 +56,6 @@
             return false;
           });
         });
-
-
         </script>
 
         <br>
@@ -82,7 +76,7 @@
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <p class="grey-text text-lighten-4">DynamicShop-Graph v${project.version}</p>
+                <p class="grey-text text-lighten-4">DynamicShop-Graph v0.2.0-SNAPSHOT.{BUILD_NUMBER}</p>
             </div>
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>
@@ -115,7 +109,7 @@
 
         Highcharts.stockChart('graphContainer', {
           rangeSelector: {
-            selected: 1
+            selected: 4
           },
 
           title: {
@@ -130,18 +124,34 @@
             enabled: true
           },
 
-          series: [{
-            tooltip: {
-              valueDecimals: 2
+          xAxis: {
+            ordinal: false,
+            followPointer: false,
+            type: "datetime",
+
+            showLastLabel: true,
+            tickWidth: 1,
+            labels: {
+              enabled: true
             }
-          }]
+          },
+
+          plotOptions: {
+            series: {
+              showInNavigator: true
+            }
+          },
+
+          tooltip: {
+            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+            valueDecimals: 2,
+            split: true
+          },
+
         });
       });
     });
-
-
 </script>
-
 
 </body>
 
