@@ -138,19 +138,19 @@
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>15.0</version>
+            <version>19.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <artifactId>commons-io</artifactId>
             <groupId>commons-io</groupId>
             <scope>compile</scope>
-            <version>2.6</version>
+            <version>2.7</version>
         </dependency>
         <dependency>
             <groupId>com.opencsv</groupId>
             <artifactId>opencsv</artifactId>
-            <version>4.4</version>
+            <version>5.2</version>
         </dependency>
         <dependency>
             <groupId>co.aikar</groupId>
@@ -183,7 +183,7 @@
         <dependency>
             <groupId>fun.ccmc.jmplib</groupId>
             <artifactId>jmplib</artifactId>
-            <version>1.0.0-SNAPSHOT.33</version>
+            <version>1.0.0-SNAPSHOT.38</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

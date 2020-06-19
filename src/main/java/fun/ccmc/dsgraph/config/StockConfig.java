@@ -66,7 +66,7 @@ public class StockConfig {
         File file = new File(path);
         if (!file.exists()) {
             try {
-                CSVWriter csvWriter = new CSVWriter(new FileWriter(path), ',');
+                CSVWriter csvWriter = new CSVWriter(new FileWriter(path));
                 csvWriter.writeNext(StockEntry.getHeader());
                 csvWriter.close();
             } catch (IOException e) {
