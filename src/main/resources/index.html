@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>DynamicShop-Graph</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css"
+          rel="stylesheet" media="screen,projection"/>
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+</head>
+
+<body>
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">DynamicShop-Graph</a>
+
+        <ul id="nav-mobile" class="sidenav">
+            <li><a href="#">Navbar Link</a></li>
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+        <div class="row center">
+
+            <div class="input-field">
+                <select id="data-select">
+                    <option value="" selected>Choose an item</option>
+                </select>
+            </div>
+
+        </div>
+
+        <script language="JavaScript">
+        $(document).ready(function () {
+
+          $('select').formSelect();
+
+          $.get('data/availableData.json', function (a) {
+            for (var i = 0; i < a.length; i++) {
+              var newValue = ["?data=" + a[i]];
+              var $newOpt = $("<option>").attr("value", newValue).text(a[i]);
+              $("#data-select").append($newOpt);
+            }
+            $('select').formSelect();
+          });
+
+          $('#data-select').bind('change', function () {
+            var url = $(this).val(); // get selected value
+            window.location = url; // redirect
+            return false;
+          });
+        });
+
+
+        </script>
+
+        <br>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="section">
+
+        <div id="graphContainer" style="height: 700px; min-width: 200px"></div>
+
+    </div>
+    <br><br>
+</div>
+
+<footer class="page-footer blue">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <p class="grey-text text-lighten-4">DynamicShop-Graph v${project.version}</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="https://github.com/jmanpenilla/DynamicShop-Graph">GitHub</a>
+                    </li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Spigot</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            Made using <a class="blue-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        </div>
+    </div>
+</footer>
+
+
+<!--  Scripts-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script language="JavaScript">
+    const urlParams = new URLSearchParams(window.location.search);
+    const dataFile = urlParams.get('data');
+
+    $(document).ready(function () {
+      $.get('data/' + dataFile + '.csv', function (csvString) {
+
+        var csv = Papa.parse($.trim(csvString));
+
+        Highcharts.stockChart('graphContainer', {
+          rangeSelector: {
+            selected: 1
+          },
+
+          title: {
+            text: dataFile
+          },
+
+          data: {
+            rows: csv.data
+          },
+
+          legend: {
+            enabled: true
+          },
+
+          series: [{
+            tooltip: {
+              valueDecimals: 2
+            }
+          }]
+        });
+      });
+    });
+
+
+</script>
+
+
+</body>
+
+</html>

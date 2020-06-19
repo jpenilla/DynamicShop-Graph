@@ -1,22 +1,25 @@
-saveUnchangedData: false
-deleteAfterDays: 7
+saveUnchangedData: true
+deleteAfterDays: 120
 webServer: true
 port: 8180
 files:
-  diamond:
+  Diamond:
     shopName: Ore
     material: DIAMOND
-  gold:
+  Gold:
     shopName: Ore
     material: GOLD_INGOT
+  Iron:
+    shopName: Ore
+    material: IRON_INGOT
 graphConfigs:
   diamond30m:
-    stockConfig: diamond
+    stockConfig: Diamond
     graphLengthMinutes: 30
     graphRefreshTimeSeconds: 10
     type: PRICE
   gold60m:
-    stockConfig: gold
+    stockConfig: Gold
     graphLengthMinutes: 60
     graphRefreshTimeSeconds: 10
     type: STOCK

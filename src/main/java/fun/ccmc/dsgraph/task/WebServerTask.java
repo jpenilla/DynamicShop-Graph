@@ -39,12 +39,12 @@ public class WebServerTask extends BukkitRunnable {
             }
         }
 
-        //Copy graph.html
-        String graphHTMLname = "graph.html";
-        File graphHTML = new File(path + "/" + graphHTMLname);
-        if (!graphHTML.exists()) {
+        //Copy index.html
+        String indexHTMLname = "index.html";
+        File indexHTML = new File(path + "/" + indexHTMLname);
+        if (!indexHTML.exists()) {
             try {
-                FileUtils.copyToFile(DSGraph.getInstance().getResource(graphHTMLname), graphHTML);
+                FileUtils.copyToFile(DSGraph.getInstance().getResource(indexHTMLname), indexHTML);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

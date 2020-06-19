@@ -28,7 +28,7 @@ public class StockConfig {
     private final String shopName;
     @Getter
     private final String path;
-    private final String folderPath = DSGraph.getInstance().getDataFolder() + "/web/data/";
+    public static final String folderPath = DSGraph.getInstance().getDataFolder() + "/web/data/";
 
     public StockConfig(String shopName, String name, Material material) {
         this.name = name;
