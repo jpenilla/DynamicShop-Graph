@@ -17,8 +17,6 @@ public class Config {
     @Getter
     private final ArrayList<GraphConfig> graphConfigs = new ArrayList<>();
     @Getter
-    private int updateDataIntervalSeconds;
-    @Getter
     private boolean saveUnchangedData;
     @Getter
     private int deleteAfterDays;
@@ -60,7 +58,6 @@ public class Config {
             });
         });
 
-        updateDataIntervalSeconds = config.getInt(Fields.updateDataIntervalSeconds);
         saveUnchangedData = config.getBoolean(Fields.saveUnchangedData);
         deleteAfterDays = config.getInt(Fields.deleteAfterDays);
         port = config.getInt(Fields.port);
