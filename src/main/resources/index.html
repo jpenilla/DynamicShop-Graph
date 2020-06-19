@@ -9,6 +9,18 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css"
           rel="stylesheet" media="screen,projection"/>
+    <style>
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1 0 auto;
+    }
+
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/stock/modules/data.js"></script>
@@ -18,59 +30,59 @@
 </head>
 
 <body>
-<nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">DynamicShop-Graph</a>
-        <ul id="nav-mobile" class="sidenav">
-            <li><a href="#">Navbar Link</a></li>
-        </ul>
-        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    </div>
-</nav>
-<div class="section no-pad-bot" id="index-banner">
-    <div class="container">
-        <div class="row center">
-            <div class="input-field">
-                <select id="data-select">
-                    <option value="" selected>Choose an item</option>
-                </select>
-            </div>
+<header>
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">DynamicShop-Graph</a>
         </div>
+    </nav>
+</header>
 
-        <script language="JavaScript">
-        $(document).ready(function () {
+<main>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <div class="row center">
+                <div class="input-field">
+                    <select id="data-select">
+                        <option value="" selected>Choose an item</option>
+                    </select>
+                </div>
+            </div>
 
-          $('select').formSelect();
-
-          $.get('data/availableData.json', function (a) {
-            for (var i = 0; i < a.length; i++) {
-              var newValue = ["?data=" + a[i]];
-              var $newOpt = $("<option>").attr("value", newValue).text(a[i]);
-              $("#data-select").append($newOpt);
-            }
+            <script language="JavaScript">
+          $(document).ready(function () {
             $('select').formSelect();
+
+            $.get('data/availableData.json', function (a) {
+              for (var i = 0; i < a.length; i++) {
+                var newValue = ["?data=" + a[i]];
+                var $newOpt = $("<option>").attr("value", newValue).text(a[i]);
+                $("#data-select").append($newOpt);
+              }
+              $('select').formSelect();
+            });
+
+            $('#data-select').bind('change', function () {
+              var url = $(this).val(); // get selected value
+              window.location = url; // redirect
+              return false;
+            });
           });
 
-          $('#data-select').bind('change', function () {
-            var url = $(this).val(); // get selected value
-            window.location = url; // redirect
-            return false;
-          });
-        });
-        </script>
+            </script>
 
-        <br>
+            <br>
+        </div>
     </div>
-</div>
 
 
-<div class="container">
-    <div class="section">
+    <div class="container">
+        <div class="graphSection">
 
-        <div id="graphContainer" style="height: 700px; min-width: 200px"></div>
+            <div id="graphContainer"></div>
 
+        </div>
     </div>
-    <br><br>
-</div>
+</main>
 
 <footer class="page-footer blue">
     <div class="container">
@@ -79,7 +91,6 @@
                 <p class="grey-text text-lighten-4">DynamicShop-Graph v${project.version}</p>
             </div>
             <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
                 <ul>
                     <li><a class="grey-text text-lighten-3" href="https://github.com/jmanpenilla/DynamicShop-Graph">GitHub</a>
                     </li>
@@ -87,10 +98,10 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container">
-            Made using <a class="blue-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        <div class="footer-copyright">
+            <div class="container">
+                Made using <a class="blue-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            </div>
         </div>
     </div>
 </footer>
@@ -103,11 +114,20 @@
     const dataFile = urlParams.get('data');
 
     $(document).ready(function () {
-      $.get('data/' + dataFile + '.csv', function (csvString) {
 
+      $.get('data/' + dataFile + '.csv', function (csvString) {
         var csv = Papa.parse($.trim(csvString));
 
+        var gHeight = window.innerHeight - $('header').height() - $('footer').height() - 200;
+        if (gHeight < 400) {
+          gHeight = 400;
+        }
+
         Highcharts.stockChart('graphContainer', {
+          chart: {
+            height: gHeight,
+          },
+
           rangeSelector: {
             selected: 4
           },
@@ -151,6 +171,7 @@
         });
       });
     });
+
 </script>
 
 </body>
