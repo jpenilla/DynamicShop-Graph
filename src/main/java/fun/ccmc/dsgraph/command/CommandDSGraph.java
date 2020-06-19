@@ -5,6 +5,7 @@ import co.aikar.commands.CommandHelp;
 import co.aikar.commands.annotation.*;
 import fun.ccmc.dsgraph.DSGraph;
 import fun.ccmc.jmplib.Chat;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 @CommandAlias("dsgraph|dsg")
@@ -18,7 +19,7 @@ public class CommandDSGraph extends BaseCommand {
     @Default
     @HelpCommand
     public void onHelp(CommandSender sender, CommandHelp help) {
-        String m = "&f---&a[ &5&l" + plugin.getName() + "&d&l Help &a]&f---";
+        String m = ChatColor.AQUA + plugin.getName() + ChatColor.DARK_AQUA + " Help";
         Chat.sendMsg(sender, m);
         help.showHelp();
     }
@@ -26,15 +27,16 @@ public class CommandDSGraph extends BaseCommand {
     @Subcommand("about")
     public void onAbout(CommandSender sender) {
         String[] m = new String[]{
-                "&a==========================",
-                plugin.getName() + " &d&o" + plugin.getDescription().getVersion(),
+                ChatColor.AQUA + "==========================",
+                plugin.getName() + " &1&o" + plugin.getDescription().getVersion(),
                 "&7By &bjmp",
-                "&a=========================="
+                ChatColor.AQUA + "=========================="
         };
         Chat.sendCenteredMessage(sender, m);
     }
 
     @Subcommand("reload")
+    @CommandPermission("dsgraph.reload")
     public void onReload(CommandSender sender) {
         Chat.sendCenteredMessage(sender, "&a&oReloading plugin...");
         plugin.getCfg().load();
