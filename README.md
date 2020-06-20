@@ -7,5 +7,5 @@ Spigot Plugin to record and graph data from the [DynamicShop](https://github.com
    * One CSV file per item tracked
  * Run a web server with interactive graphs of the data
    * Set port and enable/disable in config.yml
-
-![Example Webpage](https://i.ibb.co/VTm3nSH/vlyZM8.gif)
+   
+![Example Webpage](https://i.imgur.com/rGYpIBM.gif)
