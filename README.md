@@ -8,4 +8,4 @@ Spigot Plugin to record and graph data from the [DynamicShop](https://github.com
  * Run a web server with interactive graphs of the data
    * Set port and enable/disable in config.yml
 
-![Example Webpage](https://imgur.com/0D0Lnae.png)
+![Example Webpage](https://i.imgur.com/s5NpEhu.gif)
