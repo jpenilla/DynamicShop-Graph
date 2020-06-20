@@ -115,16 +115,16 @@
 
     $(document).ready(function () {
 
-      $.get('data/' + dataFile + '.csv', function (csvString) {
-        var csv = Papa.parse($.trim(csvString));
+      function createChart() {
 
         var gHeight = window.innerHeight - $('header').height() - $('footer').height() - 200;
         if (gHeight < 400) {
           gHeight = 400;
         }
 
-        Highcharts.stockChart('graphContainer', {
+        chartOptions = {
           chart: {
+            renderTo: 'graphContainer',
             height: gHeight,
           },
 
@@ -137,7 +137,9 @@
           },
 
           data: {
-            rows: csv.data
+            csvURL: window.location.origin + '/data/' + dataFile + '.csv',
+            enablePolling: true,
+            dataRefreshRate: 10
           },
 
           legend: {
@@ -167,10 +169,14 @@
             valueDecimals: 2,
             split: true
           },
+        }
 
-        });
-      });
+        chart = new Highcharts.stockChart(chartOptions);
+      }
+
+      createChart();
     });
+
 
 </script>
 
