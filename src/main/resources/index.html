@@ -115,6 +115,9 @@
     $(document).ready(function () {
 
       function createChart() {
+        Highcharts.setOptions({
+          colors: ['#dd2c00', '#ff6d00', '#ffab00']
+        });
 
         var gHeight = window.innerHeight - $('header').height() - $('footer').height() - 200;
         if (gHeight < 400) {
