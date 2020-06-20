@@ -1,4 +1,4 @@
-package fun.ccmc.dsgraph;
+package xyz.jpenilla.dsgraph;
 
 import me.sat7.dynamicshop.events.ShopBuySellEvent;
 import org.bukkit.event.EventHandler;

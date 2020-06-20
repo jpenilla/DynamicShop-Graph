@@ -1,9 +1,9 @@
-package fun.ccmc.dsgraph.config;
+package xyz.jpenilla.dsgraph.config;
 
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
-import fun.ccmc.dsgraph.DSGraph;
-import fun.ccmc.dsgraph.StockEntry;
+import xyz.jpenilla.dsgraph.DSGraph;
+import xyz.jpenilla.dsgraph.StockEntry;
 import lombok.Getter;
 import lombok.experimental.FieldNameConstants;
 import org.apache.commons.io.input.ReversedLinesFileReader;

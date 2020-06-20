@@ -1,5 +1,5 @@
 name: DynamicShop-Graph
 version: ${project.version}
-main: fun.ccmc.dsgraph.DSGraph
+main: xyz.jpenilla.dsgraph.DSGraph
 api-version: 1.13
 depend: [DynamicShop]

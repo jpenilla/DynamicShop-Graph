@@ -1,8 +1,8 @@
-package fun.ccmc.dsgraph.task;
+package xyz.jpenilla.dsgraph.task;
 
 import com.google.gson.Gson;
-import fun.ccmc.dsgraph.DSGraph;
-import fun.ccmc.dsgraph.config.StockConfig;
+import xyz.jpenilla.dsgraph.DSGraph;
+import xyz.jpenilla.dsgraph.config.StockConfig;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.FileWriter;

@@ -1,6 +1,6 @@
-package fun.ccmc.dsgraph;
+package xyz.jpenilla.dsgraph;
 
-import fun.ccmc.dsgraph.config.GraphConfig;
+import xyz.jpenilla.dsgraph.config.GraphConfig;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.FieldNameConstants;

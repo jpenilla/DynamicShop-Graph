@@ -1,6 +1,6 @@
-package fun.ccmc.dsgraph.task;
+package xyz.jpenilla.dsgraph.task;
 
-import fun.ccmc.dsgraph.DSGraph;
+import xyz.jpenilla.dsgraph.DSGraph;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class QueueUpdatesTask extends BukkitRunnable {

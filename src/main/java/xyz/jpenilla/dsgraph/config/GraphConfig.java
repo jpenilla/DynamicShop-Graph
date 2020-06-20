@@ -1,4 +1,4 @@
-package fun.ccmc.dsgraph.config;
+package xyz.jpenilla.dsgraph.config;
 
 import lombok.Getter;
 import lombok.experimental.FieldNameConstants;

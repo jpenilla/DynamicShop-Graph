@@ -1,9 +1,9 @@
-package fun.ccmc.dsgraph.command;
+package xyz.jpenilla.dsgraph.command;
 
 import co.aikar.commands.BukkitMessageFormatter;
 import co.aikar.commands.MessageType;
 import co.aikar.commands.PaperCommandManager;
-import fun.ccmc.dsgraph.DSGraph;
+import xyz.jpenilla.dsgraph.DSGraph;
 import org.bukkit.ChatColor;
 
 public class CommandHelper {

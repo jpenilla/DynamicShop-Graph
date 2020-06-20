@@ -1,9 +1,9 @@
-package fun.ccmc.dsgraph;
+package xyz.jpenilla.dsgraph;
 
-import fun.ccmc.dsgraph.task.CleanOldDataTask;
-import fun.ccmc.dsgraph.task.QueueUpdatesTask;
-import fun.ccmc.dsgraph.task.RecordDataTask;
-import fun.ccmc.dsgraph.task.WebServerTask;
+import xyz.jpenilla.dsgraph.task.CleanOldDataTask;
+import xyz.jpenilla.dsgraph.task.QueueUpdatesTask;
+import xyz.jpenilla.dsgraph.task.RecordDataTask;
+import xyz.jpenilla.dsgraph.task.WebServerTask;
 import lombok.Getter;
 
 public class TaskManager {

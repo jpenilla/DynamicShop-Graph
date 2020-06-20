@@ -1,12 +1,12 @@
-package fun.ccmc.dsgraph.command;
+package xyz.jpenilla.dsgraph.command;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.CommandHelp;
 import co.aikar.commands.annotation.*;
-import fun.ccmc.dsgraph.DSGraph;
-import fun.ccmc.jmplib.Chat;
+import xyz.jpenilla.dsgraph.DSGraph;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import xyz.jpenilla.jmplib.Chat;
 
 @CommandAlias("dsgraph|dsg")
 public class CommandDSGraph extends BaseCommand {

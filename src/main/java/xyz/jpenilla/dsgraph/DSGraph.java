@@ -1,9 +1,9 @@
-package fun.ccmc.dsgraph;
+package xyz.jpenilla.dsgraph;
 
 import co.aikar.commands.PaperCommandManager;
-import fun.ccmc.dsgraph.command.CommandDSGraph;
-import fun.ccmc.dsgraph.command.CommandHelper;
-import fun.ccmc.dsgraph.config.Config;
+import xyz.jpenilla.dsgraph.command.CommandDSGraph;
+import xyz.jpenilla.dsgraph.command.CommandHelper;
+import xyz.jpenilla.dsgraph.config.Config;
 import lombok.Getter;
 import lombok.Setter;
 import org.bstats.bukkit.Metrics;
