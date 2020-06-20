@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
     <title>DynamicShop-Graph</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css"
-          rel="stylesheet" media="screen,projection"/>
+          rel="stylesheet" media="screen,projection" />
     <style>
     body {
       display: flex;
@@ -19,60 +19,42 @@
     main {
       flex: 1 0 auto;
     }
+  </style>
 
-    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/stock/modules/data.js"></script>
     <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
 </head>
 
 <body>
+
 <header>
+
     <nav class="light-blue lighten-1" role="navigation">
         <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">DynamicShop-Graph</a>
         </div>
     </nav>
+
 </header>
 
 <main>
+
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
             <div class="row center">
                 <div class="input-field">
+
                     <select id="data-select">
                         <option value="" selected>Choose an item</option>
                     </select>
+
                 </div>
             </div>
-
-            <script language="JavaScript">
-          $(document).ready(function () {
-            $('select').formSelect();
-
-            $.get('data/availableData.json', function (a) {
-              for (var i = 0; i < a.length; i++) {
-                var newValue = ["?data=" + a[i]];
-                var $newOpt = $("<option>").attr("value", newValue).text(a[i]);
-                $("#data-select").append($newOpt);
-              }
-              $('select').formSelect();
-            });
-
-            $('#data-select').bind('change', function () {
-              var url = $(this).val(); // get selected value
-              window.location = url; // redirect
-              return false;
-            });
-          });
-            </script>
-
             <br>
         </div>
     </div>
-
 
     <div class="container">
         <div class="graphSection">
@@ -81,9 +63,11 @@
 
         </div>
     </div>
+
 </main>
 
 <footer class="page-footer blue">
+
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
@@ -98,11 +82,13 @@
             </div>
         </div>
     </div>
+
     <div class="footer-copyright">
         <div class="container">
             Made using <a class="blue-text text-lighten-3" href="http://materializecss.com">Materialize</a>
         </div>
     </div>
+
 </footer>
 
 
@@ -113,6 +99,22 @@
     const dataFile = urlParams.get('data');
 
     $(document).ready(function () {
+
+      $('select').formSelect();
+      $.get('data/availableData.json', function (a) {
+        for (var i = 0; i < a.length; i++) {
+          var newValue = ["?data=" + a[i]];
+          var $newOpt = $("<option>").attr("value", newValue).text(a[i]);
+          $("#data-select").append($newOpt);
+        }
+        $('select').formSelect();
+      });
+
+      $('#data-select').bind('change', function () {
+        var url = $(this).val();
+        window.location = url;
+        return false;
+      });
 
       function createChart() {
         Highcharts.setOptions({
@@ -178,7 +180,7 @@
 
       createChart();
     });
-</script>
+  </script>
 
 </body>
 
