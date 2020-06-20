@@ -9,6 +9,8 @@ import lombok.Setter;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.concurrent.Callable;
+
 public final class DSGraph extends JavaPlugin {
     @Getter
     private static DSGraph instance;
@@ -39,6 +41,8 @@ public final class DSGraph extends JavaPlugin {
 
         int pluginId = 7828;
         Metrics metrics = new Metrics(this, pluginId);
+        metrics.addCustomChart(new Metrics.SimplePie("amount_of_items_tracked", () -> String.valueOf(cfg.getFiles().size())));
+
     }
 
     @Override
