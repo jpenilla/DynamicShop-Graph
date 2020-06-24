@@ -1,7 +1,7 @@
 # DynamicShop-Graph
 Spigot Plugin to record and graph data from the [DynamicShop](https://github.com/7sat/SSDynamicShop) plugin
 * [bStats](https://bstats.org/plugin/bukkit/DynamicShop-Graph/7828)
-* [Spigot Resource Page](#)
+* [Spigot Resource Page](https://www.spigotmc.org/resources/dynamicshop-graph.80638/)
 * [Discord](https://discord.gg/yuhZXvz)
 
 ## Features
