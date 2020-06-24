@@ -43,6 +43,11 @@ public final class DSGraph extends JavaPlugin {
         Metrics metrics = new Metrics(this, pluginId);
         metrics.addCustomChart(new Metrics.SimplePie("amount_of_items_tracked", () -> String.valueOf(cfg.getFiles().size())));
 
+        new UpdateChecker(this, 80638).getVersion(version -> {
+            if (!this.getDescription().getVersion().equalsIgnoreCase(version)) {
+                getLogger().info("There is an update available for DynamicShop-Graph (" + version + ") at https://www.spigotmc.org/resources/dynamicshop-graph.80638/");
+            }
+        });
     }
 
     @Override
