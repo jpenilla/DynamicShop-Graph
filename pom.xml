@@ -6,7 +6,7 @@
 
     <groupId>xyz.jpenilla</groupId>
     <artifactId>DynamicShop-Graph</artifactId>
-    <version>0.2.2</version>
+    <version>0.2.3-SNAPSHOT.{BUILD_NUMBER}</version>
     <packaging>jar</packaging>
 
     <name>DynamicShop Graph</name>
